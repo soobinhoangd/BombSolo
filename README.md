@@ -12,3 +12,4 @@
   | Down | S |	↓ |
   | Right | D | → |
   | Left | A |  ← |
+  | Bomb | Space | Enter |
