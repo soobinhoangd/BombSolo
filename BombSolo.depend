@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1743266892 source:d:\creategame\bombsolo\main.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+	<vector>
+	<ctime>
+	<cstdlib>
+	<cmath>
+	<algorithm>
+	<string>
+	"BOMB.h"
+	"player.h"
+	"initSDL.h"
+	"checkCollision.h"
+	"LoadAndDrawTexture.h"
+	"isValidPosion.h"
+	"distance.h"
+	"bot.h"
+	"checkAlive.h"
+
+1743266763 d:\creategame\bombsolo\bomb.h
+
+1743266763 d:\creategame\bombsolo\player.h
+
+1743266763 d:\creategame\bombsolo\initsdl.h
+
+1743266763 d:\creategame\bombsolo\checkcollision.h
+
+1743266763 d:\creategame\bombsolo\loadanddrawtexture.h
+
+1743266763 d:\creategame\bombsolo\isvalidposion.h
+
+1743266763 d:\creategame\bombsolo\distance.h
+
+1743266830 d:\creategame\bombsolo\bot.h
+
+1743266863 d:\creategame\bombsolo\checkalive.h
+
