@@ -32,7 +32,34 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="LoadAndDrawTexture.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="bomb.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="bot.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="checkAlive.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="checkCollision.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="distance.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="initSDL.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="isValidPosion.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="main.cpp" />
+		<Unit filename="player.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

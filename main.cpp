@@ -46,8 +46,8 @@ const int NUM_BOTS = 2;
 
 int main(int argc, char* argv[]) {
     int dir=1;
-    direction[1]="RobotBlue.png";
-    direction[2]="Robotblue2.png";
+    direction[1]="gojo satoru2.png";
+    direction[2]="gojo satoru.png";
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
 
@@ -65,6 +65,8 @@ int main(int argc, char* argv[]) {
     SDL_Texture* botTexture = loadTexture(direction[1], renderer);
     SDL_Texture* explosionTexture = loadTexture("explosion.png", renderer);
     SDL_Texture* deadPlayer = loadTexture("go.png",renderer);
+
+    srand(time(0));
 
     // Danh sách chướng ngại vật
     std::vector<SDL_Rect> obstacles;
@@ -88,7 +90,7 @@ int main(int argc, char* argv[]) {
     for (int y = OBSTACLE_SIZE; y < SCREEN_HEIGHT - OBSTACLE_SIZE; y += OBSTACLE_SIZE) {
         obstacles.push_back({SCREEN_WIDTH - OBSTACLE_SIZE, y,OBSTACLE_SIZE,OBSTACLE_SIZE});
     }
-   /* obstacles.push_back({320,40,40,40});
+    obstacles.push_back({320,40,40,40});
     obstacles.push_back({480,40,40,40});
     obstacles.push_back({520,40,40,40});
     obstacles.push_back({720,40,40,40});
@@ -142,7 +144,7 @@ int main(int argc, char* argv[]) {
     obstacles.push_back({480,480,40,40});
     obstacles.push_back({560,480,40,40});
     obstacles.push_back({160,520,40,40});
-    obstacles.push_back({680,520,40,40});*/
+    obstacles.push_back({680,520,40,40});
     // Khởi tạo người chơi
     Player player1, player2;
     do {
@@ -200,12 +202,6 @@ int main(int argc, char* argv[]) {
                         break;
                 }
 
-                // Kiểm tra giới hạn bản đồ
-                if (newX < 0) newX = 0;
-                if (newX + PLAYER_SIZE > SCREEN_WIDTH) newX = SCREEN_WIDTH - PLAYER_SIZE;
-                if (newY < 0) newY = 0;
-                if (newY + PLAYER_SIZE > SCREEN_HEIGHT) newY = SCREEN_HEIGHT - PLAYER_SIZE;
-
                 // Kiểm tra va chạm với chướng ngại vật trước khi di chuyển
                 bool canMove = true;
                 SDL_Rect playerRect = {newX, newY, PLAYER_SIZE, PLAYER_SIZE};
@@ -243,12 +239,6 @@ int main(int argc, char* argv[]) {
                         bombs.push_back({player2.x, player2.y, SDL_GetTicks(), false, 0});
                         break;
                 }
-
-                // Kiểm tra giới hạn bản đồ
-                if (newX < 0) newX = 0;
-                if (newX + PLAYER_SIZE > SCREEN_WIDTH) newX = SCREEN_WIDTH - PLAYER_SIZE;
-                if (newY < 0) newY = 0;
-                if (newY + PLAYER_SIZE > SCREEN_HEIGHT) newY = SCREEN_HEIGHT - PLAYER_SIZE;
 
                 // Kiểm tra va chạm với chướng ngại vật trước khi di chuyển
                 bool canMove = true;
