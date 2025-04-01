@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <string>
 
-std::string direction[2];
+std::string direction[4];
 const int speed = 20;
 // Kích thước cửa sổ
 
@@ -45,9 +45,11 @@ const int NUM_BOTS = 2;
 
 
 int main(int argc, char* argv[]) {
-    int dir=1;
-    direction[1]="gojo satoru2.png";
-    direction[2]="gojo satoru.png";
+    int dir1=1,dir2=4;
+    direction[1]="RobotBlue.png";
+    direction[2]="RobotBlue2.png";
+    direction[3]="RobotBlack.png";
+    direction[4]="RobotBlack2.png";
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
 
@@ -59,10 +61,10 @@ int main(int argc, char* argv[]) {
     // Tải các texture
     SDL_Texture* backgroundTexture = loadTexture("background.png", renderer);
     SDL_Texture* player1Texture = loadTexture(direction[1], renderer);
-    SDL_Texture* player2Texture = loadTexture(direction[2], renderer);
+    SDL_Texture* player2Texture = loadTexture(direction[4], renderer);
     SDL_Texture* obstacleTexture = loadTexture("obstacle.png", renderer);
     SDL_Texture* bombTexture = loadTexture("Potion Icon.png", renderer);
-    SDL_Texture* botTexture = loadTexture(direction[1], renderer);
+    SDL_Texture* botTexture = loadTexture("RobotYellow.png", renderer);
     SDL_Texture* explosionTexture = loadTexture("explosion.png", renderer);
     SDL_Texture* deadPlayer = loadTexture("go.png",renderer);
 
@@ -145,6 +147,7 @@ int main(int argc, char* argv[]) {
     obstacles.push_back({560,480,40,40});
     obstacles.push_back({160,520,40,40});
     obstacles.push_back({680,520,40,40});
+    //std::cout<<obstacles.size();
     // Khởi tạo người chơi
     Player player1, player2;
     do {
@@ -176,7 +179,7 @@ int main(int argc, char* argv[]) {
     // Vòng lặp chính của trò chơi
     while (isRunning) {
         // Xử lý sự kiện
-        while (SDL_PollEvent(&event)) {
+        if (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 isRunning = false;
             }
@@ -186,16 +189,16 @@ int main(int argc, char* argv[]) {
                 int newY = player1.y;
                 switch (event.key.keysym.sym) {
                     case SDLK_w:
-                        newY -= speed;    player1Texture = loadTexture(direction[dir], renderer);
+                        newY -= speed;    player1Texture = loadTexture(direction[dir1], renderer);
                         break;
                     case SDLK_s:
-                        newY += speed;  player1Texture = loadTexture(direction[dir], renderer);
+                        newY += speed;  player1Texture = loadTexture(direction[dir1], renderer);
                         break;
                     case SDLK_a:
-                        newX -= speed; dir=2;   player1Texture = loadTexture(direction[dir], renderer);
+                        newX -= speed; dir1=2;   player1Texture = loadTexture(direction[dir1], renderer);
                         break;
                     case SDLK_d:
-                        newX += speed; dir=1;   player1Texture = loadTexture(direction[dir], renderer);
+                        newX += speed; dir1=1;   player1Texture = loadTexture(direction[dir1], renderer);
                         break;
                     case SDLK_SPACE:
                         bombs.push_back({player1.x, player1.y, SDL_GetTicks(), false, 0});
@@ -224,16 +227,16 @@ int main(int argc, char* argv[]) {
                 int newY = player2.y;
                 switch (event.key.keysym.sym) {
                     case SDLK_UP:
-                        newY -= speed;  player2Texture = loadTexture(direction[dir], renderer);
+                        newY -= speed;  player2Texture = loadTexture(direction[dir2], renderer);
                         break;
                     case SDLK_DOWN:
-                        newY += speed;  player2Texture = loadTexture(direction[dir], renderer);
+                        newY += speed;  player2Texture = loadTexture(direction[dir2], renderer);
                         break;
                     case SDLK_LEFT:
-                        newX -= speed; dir=2; player2Texture = loadTexture(direction[dir], renderer);
+                        newX -= speed; dir2=4; player2Texture = loadTexture(direction[dir2], renderer);
                         break;
                     case SDLK_RIGHT:
-                        newX += speed; dir=1; player2Texture = loadTexture(direction[dir], renderer);
+                        newX += speed; dir2=3; player2Texture = loadTexture(direction[dir2], renderer);
                         break;
                     case SDLK_RETURN:
                         bombs.push_back({player2.x, player2.y, SDL_GetTicks(), false, 0});
@@ -257,7 +260,7 @@ int main(int argc, char* argv[]) {
             }
 
 
-        // Di chuyển và đặt bom cho b
+        // Di chuyển và đặt bom cho bot
         for (auto& bot : bots) {
             if (SDL_GetTicks() - bot.lastMoveTime > 500) { // Di chuyển mỗi 0.5 giây
                 moveBot(bot, obstacles);
